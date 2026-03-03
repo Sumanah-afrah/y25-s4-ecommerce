@@ -1,0 +1,91 @@
+import React from 'react'
+import cookies from 'js-cookie'
+import { Link , useNavigate } from 'react-router-dom';
+
+function Signup() {
+  const navigate = useNavigate();
+
+    const[email, setEmail] = React.useState('')
+    const[password, setPassword] = React.useState('')
+    const[confirmpassword, setConfirmpassword] = React.useState('')
+  
+    function handleChange(event) {
+      const { name, value } = event.target
+      if(name === "email") {
+        setEmail(value)
+      } else if(name === "password") {
+        setPassword(value)
+      } else if(name === "confirmpassword") {
+        setConfirmpassword(value)
+      }
+    }
+  
+    function handleSubmit() {
+      if(password !== confirmpassword) {
+        alert('Password and Confirm Password do not match!')
+      } else {
+        const userData = {
+          email: email,
+          password: password
+        }
+        if (cookies.get('users')) {
+          const existingUsers = JSON.parse(cookies.get('users'))
+          existingUsers.push(userData)
+          cookies.set('users', JSON.stringify(existingUsers), { expires: 7 , path: '/' , secure: true, sameSite: 'strict' })
+        } else {
+          cookies.set('users', JSON.stringify([userData]), { expires: 7 , path: '/' , secure: true, sameSite: 'strict' })
+        }
+        alert(`Signup successful! Email: ${email}`)
+        navigate('/signin')
+      }
+    }
+  
+    return (
+      <div className="main-content common">
+      <table className='border border-black-300 shadow-xl rounded-lg '>
+        <tr>
+       <td  className='p-[2vw]' colSpan={2}>
+        <h1 className= "text-center font-bold underline"> 
+            Sign Up
+              </h1>
+            </td>
+          </tr>
+  
+          <tr>
+            <td className="p-[2vw]">
+              <label htmlFor="email">Email:</label>
+            </td>
+            <td className="p-[2vw] text-left">
+              <input value={email} onChange={ (event)=>{ handleChange(event) } } className='border border-black-500 rounded-md px-4 py-2 text-center focus:outline-none focus:border-black-600 focus:ring-1 shadow-lg ' type="text" id="email" name="email" />
+            </td>
+          </tr>
+         
+          <tr>
+            <td className="p-[2vw]">
+              <label htmlFor="password">Password:</label>
+            </td>
+            <td className="p-[2vw] text-left">
+              <input type="password" value={password} onChange={ (event)=>{ handleChange(event) } } className='border border-black-500 rounded-md px-4 py-2 text-center focus:outline-none focus:border-black-600 focus:ring-1 shadow-lg ' id="password" name="password"></input>
+            </td>
+          </tr>
+
+          <tr>
+            <td className="p-[2vw]">
+              <label htmlFor="confirmpassword">Confirm Password:</label>
+            </td>
+            <td className="p-[2vw] text-left">
+              <input type="password" value={confirmpassword} onChange={ (event)=>{ handleChange(event) } } className='border border-black-500 rounded-md px-4 py-2 text-center focus:outline-none focus:border-black-600 focus:ring-1 shadow-lg ' id="confirmpassword" name="confirmpassword"></input>
+            </td>
+          </tr>
+  
+          <tr>
+            <td className="p-[2vw] text-center" colSpan={2}>
+              <button onClick={handleSubmit} className='bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 hover:shadow-xl transition duration-900'>Sign Up</button>
+            </td>
+          </tr>        
+        </table>
+      </div>
+    )
+}
+
+export default Signup

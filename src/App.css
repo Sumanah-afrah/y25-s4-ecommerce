@@ -1,0 +1,148 @@
+@import "tailwindcss";
+
+body {
+  display: block;
+}
+
+.common {
+  width: 100vw;
+  text-align: center;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding-right: 3vw;
+  box-sizing: border-box;
+  background-color: #2cb3f7f1;
+  height: 15vh;
+}
+
+.header img {
+  height: 14vh;
+  width: 8vw;
+
+}
+
+.header p {
+  font-size: 25px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-shadow: 0px 0px 2px rgba(0, 0, 0, 0);
+  font-weight: 1000;
+  color: black
+  ;
+}
+
+.main-content {
+  background-color: rgb(67, 192, 237);
+  min-height: 80vh;
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.card {
+  width: 250px;
+  height: 350px;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 8px;
+  box-shadow: 0px 0px 3px rgb(0, 0, 0);
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.card img {
+  width: 150px;
+  height: 200px;
+  
+}
+
+.product-image {
+  width: 150px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.footer {
+  background-color: rgb(119, 207, 241);
+  height: 10vh;
+  display: flex;
+  gap: 3vw;
+  justify-content: center;
+  align-items: center;
+}
+
+.system-menu{
+  display: flex;
+  gap: 20px;
+  list-style-type: none;
+  font-size: medium;
+}
+
+.menu-icon {
+  display: none;
+}
+
+@media (max-width: 768px) { 
+
+  .navlinks {
+    width: 60vw;
+    text-align: left;
+    
+  }
+
+  .system-menu {
+    display: none;
+  }
+}
+
+
+  .menu-icon {
+    display: flex;
+    position: absolute;
+    top: 50px;
+    left:30px;
+  }
+ 
+.mobile-menu {
+  display:block;
+  position: absolute;
+  top: 100px;
+  left:0px;
+  width:30vw;
+animation: forwards 1s fadeIn;
+
+}
+
+ @keyframes fadeIn {
+    from { 
+      opacity: 0;
+      transform : translateY(-200px);
+     }
+   
+  }
+
+
+.mobile-menu a {
+  color: white;
+  
+}
+
+.mobile-menu li{
+  background-color:#2cb3f7f1 ;
+  margin: 10px;
+  padding:10px;
+  border-radius: 10px;
+}
+
+.mobile-menu li:hover{
+  background-color: rgb(192, 5, 239);
+}
+
+.mobile-menu :hover {
+  color: rgb(0, 0, 0);
+}
