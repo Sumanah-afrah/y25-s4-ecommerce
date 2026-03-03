@@ -4,6 +4,9 @@ import '../App.css'
 function ShowProduct({result}) {
 
   function addCart(pt) {
+    
+    
+    
     let cart = JSON.parse(localStorage.getItem("cart") || "[]")
     cart.push(pt)
     localStorage.setItem("cart", JSON.stringify(cart))
